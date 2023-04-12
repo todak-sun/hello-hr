@@ -1,0 +1,20 @@
+{
+  "name": "hello-hr",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "turbo run build"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^1.9.0"
+  },
+  "packageManager": "pnpm@7.29.3"
+}
