@@ -1,0 +1,12 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:15.2
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: todak-sun
+      POSTGRES_PASSWORD: pass!word!@
