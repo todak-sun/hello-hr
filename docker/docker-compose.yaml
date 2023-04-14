@@ -10,3 +10,4 @@ services:
     environment:
       POSTGRES_USER: todak-sun
       POSTGRES_PASSWORD: pass!word!@
+      POSTGRES_DB: todak-test
