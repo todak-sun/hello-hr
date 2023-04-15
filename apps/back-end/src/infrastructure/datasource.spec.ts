@@ -1,5 +1,5 @@
 import { validationSchema } from "@/configuration/config";
-import { postgresqlDataSource } from "@/infrastructure/datasource";
+import { PgDataSource } from "@/infrastructure/datasource";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { Test } from "@nestjs/testing";
 import { DataSource } from "typeorm";
@@ -21,7 +21,7 @@ describe("datasource test", () => {
           provide: DataSource,
           inject: [ConfigService],
           useFactory: async (configService: ConfigService) => {
-            return await postgresqlDataSource(configService);
+            return await PgDataSource(configService);
           },
         },
       ],

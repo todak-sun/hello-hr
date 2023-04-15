@@ -1,7 +1,8 @@
+import { LocalDateTimeTransformer } from "@/common/local-date-time.transformer";
 import { LocalDateTime } from "@js-joda/core";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: "bamboo" })
 export class BambooEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -9,10 +10,16 @@ export class BambooEntity {
   @Column()
   content: string;
 
-  @Column()
+  @Column({
+    nullable: false,
+  })
   password: string;
 
-  @Column()
+  @Column({
+    type: "timestamptz",
+    transformer: new LocalDateTimeTransformer(),
+    nullable: false,
+  })
   createdDateTime: LocalDateTime;
 
   static create(content: string, password: string): BambooEntity {
