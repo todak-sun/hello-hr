@@ -5,9 +5,7 @@ import { DataSource, Repository } from "typeorm";
 
 @Injectable()
 export class BambooRepository extends Repository<BambooEntity> {
-  constructor(
-    @Inject(PgDataSourceSymbol) private readonly dataSource: DataSource,
-  ) {
+  constructor(@Inject(PgDataSourceSymbol) private readonly dataSource: DataSource) {
     super(BambooEntity, dataSource.createEntityManager());
   }
 }

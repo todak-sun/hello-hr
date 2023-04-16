@@ -2,7 +2,7 @@ import { BambooRepository } from "@/bamboo-forest/adapter/out/bamboo.repository"
 import { NestAppTestModule } from "@/configuration/test.config";
 import { DataBaseModule } from "@/infrastructure/database.module";
 import { Test } from "@nestjs/testing";
-import { CreateBambooUseCase } from "../port/create-bamboo.use-case";
+import { CreateBambooUseCase } from "../port/in/create-bamboo.use-case";
 import { CreateBambooService } from "./create-bamboo.service";
 
 describe("CreateBambooService Test", () => {
@@ -25,13 +25,20 @@ describe("CreateBambooService Test", () => {
 
   it("Service is defined", async () => {
     // given
+    const title = "대나무 숲";
     const content = "임금님 귀는 당나귀 귀~~";
     const password = "bimil~~";
 
     // when
-    const id = await createBambooUseCase.create(content, password);
+    const id = await createBambooUseCase.create(title, content, password);
 
     // then
     expect(id).toBeDefined();
+    const bamboo = await repository.findOneByOrFail({ id: id });
+    expect(bamboo).toBeDefined();
+    expect(bamboo.title).toBe(title);
+    expect(bamboo.content).toBe(content);
+    expect(bamboo.password).toBeDefined();
+    expect(bamboo.password).not.toBe(password);
   });
 });

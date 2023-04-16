@@ -7,12 +7,13 @@ export class BambooEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
+  title: string;
+
+  @Column({ nullable: false })
   content: string;
 
-  @Column({
-    nullable: false,
-  })
+  @Column({ nullable: false })
   password: string;
 
   @Column({
@@ -22,8 +23,9 @@ export class BambooEntity {
   })
   createdDateTime: LocalDateTime;
 
-  static create(content: string, password: string): BambooEntity {
+  static create(title: string, content: string, password: string): BambooEntity {
     const bamboo = new BambooEntity();
+    bamboo.title = title;
     bamboo.content = content;
     bamboo.password = password;
     bamboo.createdDateTime = LocalDateTime.now();
