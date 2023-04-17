@@ -18,6 +18,7 @@ export class MemberRoleEntity {
     name: "created_datetime",
     transformer: new LocalDateTimeTransformer(),
     nullable: false,
+    type: "timestamptz",
   })
   createdDateTime: LocalDateTime;
 }

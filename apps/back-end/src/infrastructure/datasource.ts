@@ -1,4 +1,6 @@
 import { BambooEntity } from "@/bamboo-forest/domain/bamboo.entity";
+import { MemberRoleEntity } from "@/members/domain/member-role.entity";
+import { MemberEntity } from "@/members/domain/member.entity";
 import { ConfigService } from "@nestjs/config";
 import { DataSource } from "typeorm";
 
@@ -15,7 +17,7 @@ export const PgDataSource = async (configService: ConfigService) => {
     database: configService.get<string>("POSTGRES_DATABASE"),
     logging: ["query", "error", "schema"],
     synchronize,
-    entities: [BambooEntity],
+    entities: [BambooEntity, MemberEntity, MemberRoleEntity],
   });
 
   return await dataSource.initialize();

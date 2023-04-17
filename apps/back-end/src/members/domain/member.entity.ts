@@ -14,7 +14,9 @@ export class MemberEntity {
   @Column({ nullable: false, name: "password" })
   password: string;
 
-  @OneToMany(() => MemberRoleEntity, (role) => role.member)
+  @OneToMany(() => MemberRoleEntity, (role) => role.member, {
+    cascade: true,
+  })
   roles: MemberRoleEntity[];
 
   @Column({
@@ -32,4 +34,22 @@ export class MemberEntity {
     transformer: new LocalDateTimeTransformer(),
   })
   updatedDateTime: LocalDateTime;
+
+  static create(username: string, password: string): MemberEntity {
+    const member = new MemberEntity();
+    member.username = username;
+    member.password = password;
+    member.signUpDateTime = LocalDateTime.now();
+    member.updatedDateTime = LocalDateTime.now();
+    member.roles = [];
+    return member;
+  }
+
+  addRole(role: MemberRoleEntity | MemberRoleEntity[]) {
+    if (Array.isArray(role)) {
+      this.roles.push(...role);
+    } else {
+      this.roles.push(role);
+    }
+  }
 }
