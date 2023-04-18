@@ -1,17 +1,17 @@
-import { BambooRepository } from "@/bamboo-forest/adapter/out/bamboo.repository";
-import { NestAppTestModule } from "@/configuration/test.config";
-import { DataBaseModule } from "@/infrastructure/database.module";
-import { Test } from "@nestjs/testing";
+import { BambooRepository } from "@/bamboo-forest/adapter/out/persistence/bamboo.repository";
+import { BambooEntity } from "@/bamboo-forest/domain/bamboo.entity";
+import { TestContainerDatabaseModule } from "@/tests/testcontainer-database.module";
+import { Test, TestingModule } from "@nestjs/testing";
 import { CreateBambooUseCase } from "../port/in/create-bamboo.use-case";
 import { CreateBambooService } from "./create-bamboo.service";
 
 describe("CreateBambooService Test", () => {
   let repository: BambooRepository;
   let createBambooUseCase: CreateBambooUseCase;
-
+  let module: TestingModule;
   beforeAll(async () => {
-    const module = await Test.createTestingModule({
-      imports: [NestAppTestModule, DataBaseModule],
+    module = await Test.createTestingModule({
+      imports: [TestContainerDatabaseModule.forEntities([BambooEntity])],
       providers: [BambooRepository, CreateBambooService],
       exports: [BambooRepository, CreateBambooService],
     }).compile();
@@ -21,6 +21,7 @@ describe("CreateBambooService Test", () => {
 
   afterAll(async () => {
     await repository.clear();
+    await module.close();
   });
 
   it("Service is defined", async () => {

@@ -1,5 +1,5 @@
 import { BambooEntity } from "@/bamboo-forest/domain/bamboo.entity";
-import { PgDataSourceSymbol } from "@/infrastructure/datasource";
+import { PgDataSourceSymbol } from "@/infrastructure/datasource.providers";
 import { Inject, Injectable } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";
 

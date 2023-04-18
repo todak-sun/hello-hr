@@ -46,10 +46,10 @@ export class MemberEntity {
   }
 
   addRole(role: MemberRoleEntity | MemberRoleEntity[]) {
-    if (Array.isArray(role)) {
-      this.roles.push(...role);
-    } else {
-      this.roles.push(role);
-    }
+    const roles = Array.isArray(role) ? role : [role];
+    roles.forEach((item) => {
+      item.assignRole(this);
+      this.roles.push(item);
+    });
   }
 }

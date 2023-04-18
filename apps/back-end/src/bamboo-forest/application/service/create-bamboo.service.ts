@@ -1,4 +1,4 @@
-import { BambooRepository } from "@/bamboo-forest/adapter/out/bamboo.repository";
+import { BambooRepository } from "@/bamboo-forest/adapter/out/persistence/bamboo.repository";
 import { BambooEntity } from "@/bamboo-forest/domain/bamboo.entity";
 import { generateHashedValue } from "@/common/bcrypt.util";
 import { Injectable } from "@nestjs/common";

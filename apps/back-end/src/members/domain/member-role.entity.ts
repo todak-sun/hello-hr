@@ -1,11 +1,11 @@
 import { LocalDateTimeTransformer } from "@/common/local-date-time.transformer";
 import { LocalDateTime } from "@js-joda/core";
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { MemberEntity } from "./member.entity";
 
 @Entity({ name: "member_role" })
 export class MemberRoleEntity {
-  @PrimaryColumn({ name: "member_role_id" })
+  @PrimaryGeneratedColumn({ name: "member_role_id" })
   id: number;
 
   @Column({ nullable: false, name: "role" })
@@ -21,4 +21,15 @@ export class MemberRoleEntity {
     type: "timestamptz",
   })
   createdDateTime: LocalDateTime;
+
+  static create(role: string): MemberRoleEntity {
+    const memberRole = new MemberRoleEntity();
+    memberRole.role = role;
+    memberRole.createdDateTime = LocalDateTime.now();
+    return memberRole;
+  }
+
+  assignRole(member: MemberEntity) {
+    this.member = member;
+  }
 }

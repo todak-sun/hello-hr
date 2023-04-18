@@ -1,5 +1,5 @@
-import { NestAppTestModule } from "@/configuration/test.config";
-import { DataBaseModule } from "@/infrastructure/database.module";
+import { BambooEntity } from "@/bamboo-forest/domain/bamboo.entity";
+import { TestContainerDatabaseModule } from "@/tests/testcontainer-database.module";
 import { Test, TestingModule } from "@nestjs/testing";
 import { BambooRepository } from "./bamboo.repository";
 
@@ -9,7 +9,7 @@ describe("BambooRepository Test", () => {
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
-      imports: [NestAppTestModule, DataBaseModule],
+      imports: [TestContainerDatabaseModule.forEntities([BambooEntity])],
       providers: [BambooRepository],
       exports: [BambooRepository],
     }).compile();

@@ -1,4 +1,4 @@
-import { PgDataSourceSymbol } from "@/infrastructure/datasource";
+import { PgDataSourceSymbol } from "@/infrastructure/datasource.providers";
 import { MemberEntity } from "@/members/domain/member.entity";
 import { Inject } from "@nestjs/common";
 import { DataSource, Repository } from "typeorm";

@@ -1,18 +1,10 @@
-import { PgDataSource, PgDataSourceSymbol } from "@/infrastructure/datasource";
+import { dataSourceProviders } from "@/infrastructure/datasource.providers";
 import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [ConfigModule],
-  providers: [
-    {
-      provide: PgDataSourceSymbol,
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        return await PgDataSource(configService);
-      },
-    },
-  ],
-  exports: [PgDataSourceSymbol],
+  providers: dataSourceProviders,
+  exports: dataSourceProviders,
 })
 export class DataBaseModule {}
