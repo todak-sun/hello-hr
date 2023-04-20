@@ -9,7 +9,7 @@ export class TestContainerService implements OnModuleDestroy {
     return this;
   }
 
-  get<T>(token: InjectionToken): T | null {
+  get<T>(token: InjectionToken): T {
     const founded = this.map.get(token);
     if (!founded) {
       throw new Error(`NotFound Token = ${String(token)}`);

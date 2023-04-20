@@ -1,7 +1,7 @@
 import { DataBaseModule } from "@/infrastructure/database.module";
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
-import { BambooRepository } from "./adapter/out/bamboo.repository";
+import { BambooRepository } from "./adapter/out/persistence/bamboo.repository";
 
 @Module({
   imports: [ConfigModule, DataBaseModule],

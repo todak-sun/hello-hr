@@ -18,11 +18,11 @@ export class TestContainerDatabaseModule {
 
           const dataSourceOptions: DataSourceOptions = {
             type: "postgres",
-            host: container?.getHost() || "localhost",
-            port: container?.getPort(),
-            database: container?.getDatabase(),
-            username: container?.getUsername(),
-            password: container?.getPassword(),
+            host: container.getHost(),
+            port: container.getPort(),
+            database: container.getDatabase(),
+            username: container.getUsername(),
+            password: container.getPassword(),
             entities,
             synchronize: true,
             logging: ["query", "schema", "error"],
