@@ -1,4 +1,4 @@
-import { BambooRepository } from "@/bamboo-forest/adapter/out/bamboo.repository";
+import { BambooRepository } from "@/bamboo-forest/adapter/out/persistence/bamboo.repository";
 import { Injectable } from "@nestjs/common";
 import { Bamboo } from "../port/in/dto/bamboo";
 import { QueryBambooUseCase } from "../port/in/query-bamboo.use-case";

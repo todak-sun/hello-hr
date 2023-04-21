@@ -1,3 +1,5 @@
+import { CreateMemberCommand } from "./dto/create-member.command";
+
 export interface CreateMemberUseCase {
-  create(): Promise<number>;
+  create(command: CreateMemberCommand): Promise<number>;
 }
