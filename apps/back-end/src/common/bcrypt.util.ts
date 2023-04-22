@@ -5,9 +5,6 @@ export async function generateHashedValue(value: string): Promise<string> {
   return await bcrypt.hash(value, salt);
 }
 
-export async function compareValue(
-  value: string,
-  hashedValue: string,
-): Promise<boolean> {
+export async function compareValue(value: string, hashedValue: string): Promise<boolean> {
   return await bcrypt.compare(value, hashedValue);
 }

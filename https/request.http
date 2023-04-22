@@ -1,0 +1,23 @@
+@LOCAL_HOST=http://localhost:8080
+
+### 회원가입
+POST {{LOCAL_HOST}}/auth/sign-up
+Content-Type: application/json
+
+{
+    "username" : "username@username.com",
+    "password" : "password!@#"
+}
+
+### 토큰발행받기
+POST {{LOCAL_HOST}}/auth/sign-in
+Content-Type: application/json
+
+{
+    "username" : "username@username.com",
+    "password" : "password!@#"
+}
+
+### 멤버 조회
+GET {{LOCAL_HOST}}/members
+Content-Type: application/json

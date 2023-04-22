@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "back-end": "pnpm -F back-end",
     "build": "turbo run build",
     "start": "turbo run start"
   },

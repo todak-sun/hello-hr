@@ -1,6 +1,8 @@
+import { compareValue, generateHashedValue } from "@/common/bcrypt.util";
 import { LocalDateTimeTransformer } from "@/common/local-date-time.transformer";
 import { LocalDateTime } from "@js-joda/core";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { MemberRole } from "../types/member-role";
 import { MemberRoleEntity } from "./member-role.entity";
 
 @Entity({ name: "member" })
@@ -35,10 +37,10 @@ export class MemberEntity {
   })
   updatedDateTime: LocalDateTime;
 
-  static create(username: string, password: string): MemberEntity {
+  static async create(username: string, password: string): Promise<MemberEntity> {
     const member = new MemberEntity();
     member.username = username;
-    member.password = password;
+    member.password = await generateHashedValue(password);
     member.signUpDateTime = LocalDateTime.now();
     member.updatedDateTime = LocalDateTime.now();
     member.roles = [];
@@ -51,5 +53,13 @@ export class MemberEntity {
       item.assignRole(this);
       this.roles.push(item);
     });
+  }
+
+  getRoles(): MemberRole[] {
+    return this.roles.map((role) => role.role);
+  }
+
+  async isSamePassword(password: string): Promise<boolean> {
+    return compareValue(password, this.password);
   }
 }
