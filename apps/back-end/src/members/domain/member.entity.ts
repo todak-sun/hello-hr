@@ -19,7 +19,7 @@ export class MemberEntity {
   @OneToMany(() => MemberRoleEntity, (role) => role.member, {
     cascade: true,
   })
-  roles: MemberRoleEntity[];
+  roles: MemberRoleEntity[] = [];
 
   @Column({
     nullable: false,

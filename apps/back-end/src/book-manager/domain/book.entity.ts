@@ -12,7 +12,7 @@ export class BookEntity {
   @Column({ name: "name" })
   name: string;
 
-  @Column({ name: "ISBN" })
+  @Column({ name: "isbn" })
   isbn: string;
 
   @Column({ name: "updated_datetime", transformer: new LocalDateTimeTransformer() })
