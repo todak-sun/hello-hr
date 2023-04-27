@@ -9,15 +9,24 @@ export class BookEntity {
   @PrimaryGeneratedColumn({ name: "book_id" })
   id: number;
 
-  @Column({ name: "name" })
-  name: string;
-
-  @Column({ name: "isbn" })
+  @Column({ name: "isbn", unique: true })
   isbn: string;
+
+  @Column({ name: "title" })
+  title: string;
 
   @Column({ name: "updated_datetime", transformer: new LocalDateTimeTransformer() })
   updatedDateTime: LocalDateTime;
 
   @Column({ name: "created_datetime", transformer: new LocalDateTimeTransformer() })
   createdDateTime: LocalDateTime;
+
+  static create(isbn: string, title: string): BookEntity {
+    const book = new BookEntity();
+    book.isbn = isbn;
+    book.title = title;
+    book.updatedDateTime = LocalDateTime.now();
+    book.createdDateTime = LocalDateTime.now();
+    return book;
+  }
 }
